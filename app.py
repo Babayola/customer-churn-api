@@ -15,27 +15,39 @@ def index():
     return render_template('index.html')
 
 # Web UI route: handle form submit
+
 @app.route('/predict', methods=['POST'])
 def predict_form():
     try:
         input_data = {
-            'Contract': request.form['Contract'],
+            'gender': request.form['gender'],
+            'SeniorCitizen': int(request.form['SeniorCitizen']),
+            'Partner': request.form['Partner'],
+            'Dependents': request.form['Dependents'],
+            'tenure': int(request.form['tenure']),
+            'PhoneService': request.form['PhoneService'],
+            'MultipleLines': request.form['MultipleLines'],
             'InternetService': request.form['InternetService'],
             'OnlineSecurity': request.form['OnlineSecurity'],
-            'PhoneService': request.form['PhoneService'],
+            'OnlineBackup': request.form['OnlineBackup'],
+            'DeviceProtection': request.form['DeviceProtection'],
             'TechSupport': request.form['TechSupport'],
+            'StreamingTV': request.form['StreamingTV'],
+            'StreamingMovies': request.form['StreamingMovies'],
+            'Contract': request.form['Contract'],
             'PaperlessBilling': request.form['PaperlessBilling'],
             'PaymentMethod': request.form['PaymentMethod'],
-            'MultipleLines': request.form['MultipleLines'],
-            'StreamingMovies': request.form['StreamingMovies']
+            'MonthlyCharges': float(request.form['MonthlyCharges']),
+            'TotalCharges': float(request.form['TotalCharges']),
+            'customerID': request.form['customerID']
         }
 
         input_df = pd.DataFrame([input_data])
         prediction = pipeline.predict(input_df)[0]
 
-        return render_template('index.html', prediction_text=f'Churn Prediction: {prediction}')
+        return render_template('index.html', prediction=prediction)
     except Exception as e:
-        return render_template('index.html', prediction_text=f'Error: {str(e)}')
+        return render_template('index.html', prediction=f"Error: {str(e)}")
 
 # API route: JSON request
 @app.route('/predict-json', methods=['POST'])

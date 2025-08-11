@@ -1,44 +1,37 @@
-<!-- templates/index.html -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Customer Churn Prediction</title>
 </head>
 <body>
-    <h2>Enter Customer Details</h2>
-    <form method="POST" action="/predict">
-        <label>Contract:</label>
-        <input type="text" name="Contract" required><br>
-
-        <label>Internet Service:</label>
-        <input type="text" name="InternetService" required><br>
-
-        <label>Online Security:</label>
-        <input type="text" name="OnlineSecurity" required><br>
-
-        <label>Phone Service:</label>
-        <input type="text" name="PhoneService" required><br>
-
-        <label>Tech Support:</label>
-        <input type="text" name="TechSupport" required><br>
-
-        <label>Paperless Billing:</label>
-        <input type="text" name="PaperlessBilling" required><br>
-
-        <label>Payment Method:</label>
-        <input type="text" name="PaymentMethod" required><br>
-
-        <label>Multiple Lines:</label>
-        <input type="text" name="MultipleLines" required><br>
-
-        <label>Streaming Movies:</label>
-        <input type="text" name="StreamingMovies" required><br><br>
-
+    <h1>Enter Customer Details</h1>
+    <form action="/predict" method="post">
+        Gender: <input type="text" name="gender"><br><br>
+        Senior Citizen (0 or 1): <input type="text" name="SeniorCitizen"><br><br>
+        Partner: <input type="text" name="Partner"><br><br>
+        Dependents: <input type="text" name="Dependents"><br><br>
+        Tenure: <input type="text" name="tenure"><br><br>
+        Phone Service: <input type="text" name="PhoneService"><br><br>
+        Multiple Lines: <input type="text" name="MultipleLines"><br><br>
+        Internet Service: <input type="text" name="InternetService"><br><br>
+        Online Security: <input type="text" name="OnlineSecurity"><br><br>
+        Online Backup: <input type="text" name="OnlineBackup"><br><br>
+        Device Protection: <input type="text" name="DeviceProtection"><br><br>
+        Tech Support: <input type="text" name="TechSupport"><br><br>
+        Streaming TV: <input type="text" name="StreamingTV"><br><br>
+        Streaming Movies: <input type="text" name="StreamingMovies"><br><br>
+        Contract: <input type="text" name="Contract"><br><br>
+        Paperless Billing: <input type="text" name="PaperlessBilling"><br><br>
+        Payment Method: <input type="text" name="PaymentMethod"><br><br>
+        Monthly Charges: <input type="text" name="MonthlyCharges"><br><br>
+        Total Charges: <input type="text" name="TotalCharges"><br><br>
+        Customer ID: <input type="text" name="customerID"><br><br>
+        
         <input type="submit" value="Predict">
     </form>
 
-    {% if prediction_text %}
-        <h3>{{ prediction_text }}</h3>
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
     {% endif %}
 </body>
 </html>
